@@ -72,7 +72,7 @@ class FileReader:
                     read_headers=True
                     break
             
-            next(file)
+            #next(file)
             
             # Read each line and extract values
             for line in file:

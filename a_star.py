@@ -227,7 +227,7 @@ def search_PRM(points, prm, start, end):
     visited = {} # dict of index to bool, storing visited nodes
 
     to_visit[start_idx] = start_node # add start node to visited
-    pathFound = False
+    pathFound = False # flag indicating if a path is found
     # loop while the nodes to visit isnt empty
     while len(to_visit) > 0:
         # determine node to visit next (node with lowest f score)
@@ -279,8 +279,9 @@ def search_PRM(points, prm, start, end):
     if not pathFound:
         print("No path found. Returning empty list")
     else:
+        # recursively add points to path_points to form shortest path from start to end
         curr = end_node
-        while curr is not None:
+        while curr is not None: # when reached start, parent will be None so we stop
             path_points.insert(0, curr.position)
             curr = curr.parent
     

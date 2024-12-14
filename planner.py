@@ -2,6 +2,7 @@ from mapUtilities import *
 from a_star import *
 from probabilistic_road_map import *
 import time
+from utilities import Logger
 
 POINT_PLANNER=0; TRAJECTORY_PLANNER=1; ASTAR_PLANNER=2; PRM_PLANNER=3
 
@@ -12,6 +13,8 @@ class planner:
         self.type=type_
         self.mapName=mapName
         self.hasPRM = False
+        self.pathLogger= Logger("idealPath.csv", ["x", "y"])
+        #self.obstaclesLogger = Logger("obstacles.csv", ["x", "y"])
     
     def plan(self, startPose, endPose):
         
@@ -105,8 +108,21 @@ class planner:
         plt.plot(startPoseCart[0],startPoseCart[1],'*')
         plt.plot(endPoseCart[0],
                  endPoseCart[1], '*')
-
+        plt.title("A* Path")
+        plt.xlabel("x(m)")
+        plt.ylabel("y(m)")
         plt.show()
+        totalLength = 0
+        prevPoint = None
+        # log path and calculate total length
+        for i, point in enumerate(Path):
+            self.pathLogger.log_values([point[0], point[1]])
+            if prevPoint is not None:
+                totalLength += sqrt((point[0]-prevPoint[0])**2+(point[1]-prevPoint[1])**2)
+            prevPoint = point
+        print(f"Total path length is {totalLength} m")
+        #for obstacle in self.obstaclesList:
+        #    self.obstaclesLogger.log_values([obstacle[0], obstacle[1]])
         
         return Path.tolist()
     

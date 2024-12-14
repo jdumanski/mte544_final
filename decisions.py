@@ -39,7 +39,7 @@ class decision_maker(Node):
 
 
         # [Part 4] TODO Use the EKF localization instead of rawSensors
-        self.localizer=localization(rawSensors)
+        self.localizer=localization(rawSensors, loggerHeaders=["x", "y"])
 
 
         self.goal = None

@@ -105,7 +105,7 @@ class localization(Node):
                     pose_msg.pose.pose.position.y,
                     euler_from_quaternion(pose_msg.pose.pose.orientation),
                     pose_msg.header.stamp]
-
+        self.loc_logger.log_values([self.pose[0], self.pose[1]])
         
     def getPose(self):
         return self.pose

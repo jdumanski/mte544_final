@@ -31,9 +31,9 @@ from mapUtilities import *
 import array
 
 # Parameters of PRM
-N_SAMPLE = 1000 # number of sample_points
+N_SAMPLE = 1200 # number of sample_points
 N_KNN = 20  # number of edge from one sampled point (one node)
-MAX_EDGE_LEN = 8  # Maximum edge length, in [m]
+MAX_EDGE_LEN = 5 # Maximum edge length, in [m]
 
 show_plot = True
 
@@ -365,6 +365,7 @@ def plot_road_map(road_map, sample_points):
     plt.title("PRM Graph")
     plt.xlabel("x (m)")
     plt.ylabel("y (m)")
+    plt.xlim(0, 60)
 
 
 def main(rng=None):
@@ -375,7 +376,7 @@ def main(rng=None):
     sy = 10.0  # [m]
     gx = 50.0  # [m]
     gy = 50.0  # [m]
-    robot_size = 2.0  # [m]
+    robot_size = 5.0  # [m]
 
     ox = []
     oy = []
